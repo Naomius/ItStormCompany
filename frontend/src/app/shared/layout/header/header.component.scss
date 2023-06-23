@@ -1,0 +1,68 @@
+@import "../../../../assets/styles/variables";
+
+header.header {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+
+    .header-content {
+      display: flex;
+      align-items: center;
+
+
+      .header-content__menu {
+        margin-left: 100px;
+        margin-right: 227px;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+
+          li {
+            margin-right: 30px;
+            list-style: none;
+            border-bottom: 1px solid transparent;
+
+            &.active {
+              border-bottom-color: $base-text-color;
+            }
+
+            a {
+
+              color: $base-text-color;
+              cursor: pointer;
+              text-decoration: none;
+            }
+
+          }
+        }
+      }
+
+      .header-content__phone {
+        color: $blue-text-color;
+        margin-right: 141px;
+      }
+      .header-content__auth {
+        a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          svg {
+            margin-right: 9px;
+          }
+          span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: $base-text-color;
+          }
+        }
+      }
+    }
+  }
+}
