@@ -28,15 +28,15 @@ header.header {
             list-style: none;
             border-bottom: 1px solid transparent;
 
-            &.active {
-              border-bottom-color: $base-text-color;
-            }
 
             a {
-
               color: $base-text-color;
               cursor: pointer;
               text-decoration: none;
+
+              &.active {
+                border-bottom-color: $base-text-color;
+              }
             }
 
           }
@@ -45,13 +45,14 @@ header.header {
 
       .header-content__phone {
         color: $blue-text-color;
-        margin-right: 141px;
+        margin-right: 120px;
       }
       .header-content__auth {
         a {
           display: flex;
           align-items: center;
           text-decoration: none;
+          cursor: pointer;
           svg {
             margin-right: 9px;
           }

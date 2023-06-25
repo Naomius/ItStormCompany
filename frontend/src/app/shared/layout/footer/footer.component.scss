@@ -73,6 +73,14 @@ footer.footer {
         .footer-block__phone {
           margin-bottom: 10px;
         }
+
+        .footer-block__email {
+          cursor: pointer;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 400;
+          color: $base-text-color;
+        }
       }
     }
 

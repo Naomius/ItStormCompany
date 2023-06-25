@@ -1,0 +1,392 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/global";
+
+.main {
+  margin-top: 0;
+  margin-bottom: 120px;
+
+  .container {
+    position: relative;
+
+    .main-carousel {
+
+      .carousel-item {
+        padding: 100px 80px;
+        height: 500px;
+        box-sizing: border-box;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        .carousel-item__preview {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.4em;
+          text-transform: uppercase;
+          color: $blue-text-color;
+        }
+
+        .carousel-item__title {
+          max-width: 610px;
+          font-family: 'Lora', sans-serif;
+          font-size: 50px;
+          font-weight: 400;
+          line-height: 65px;
+          color: #FFFFFF;
+
+          span {
+            color: $blue-text-color;
+          }
+        }
+
+        .carousel-item__text {
+          max-width: 456px;
+          margin-top: 20px;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 31px;
+          color: #FFFFFF;
+
+        }
+
+        .carousel-item__action {
+          margin-top: 50px;
+
+          button {
+            width: 163px;
+          }
+        }
+      }
+
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: calc(50% - 40px);
+      z-index: 333;
+      width: 100%;
+
+      .carousel-arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px;
+
+        a {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.services {
+  padding-bottom: 120px;
+
+  .container {
+    .services-title {
+      @include head-lora-38;
+      margin-bottom: 40px;
+    }
+
+    .services-items {
+      display: flex;
+      justify-content: space-between;
+
+      .services-item {
+        max-width: 290px;
+
+        .services-item__image {
+          margin-bottom: 15px;
+        }
+
+        .services-item__title {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 20px;
+          font-weight: 500;
+          color: $blue-text-color;
+          margin-bottom: 10px;
+        }
+
+        .services-item__text {
+          font-size: 14px;
+          line-height: 18px;
+          color: $base-text-color;
+          margin-bottom: 33px;
+          height: 90px;
+        }
+
+        .services-item__action {
+          display: flex;
+          align-items: center;
+
+          .services-item__action-text {
+            margin-right: 21px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: $blue-text-color;
+          }
+
+          .services-item__action-button {
+
+            button {
+              width: 163px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.about {
+  margin-bottom: 120px;
+
+  .container {
+    display: flex;
+
+    .about-image {
+      margin-right: 68px;
+    }
+
+    .about-description {
+
+      .about-description__title {
+        @include head-lora-38;
+        margin-bottom: 20px;
+      }
+
+      .about-description__description {
+        margin-bottom: 40px;
+        max-width: 633px;
+        font-size: 14px;
+        line-height: 18px;
+        color: $base-text-color;
+
+        span {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+
+      .about-description__text {
+        font-family: 'Lora', sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: $blue-text-color;
+      }
+
+      .about-description__items {
+        display: flex;
+        flex-wrap: wrap;
+
+        .about-description__item {
+          display: flex;
+          align-items: center;
+          max-width: 316px;
+          margin-top: 20px;
+
+          .about-description__item-number {
+            margin-right: 20px;
+            width: 150px;
+            height: 40px;
+            border-radius: 50%;
+            background: #B9D5FD;
+            position: relative;
+            text-align: center;
+
+            span {
+              position: relative;
+              top: -45%;
+              font-family: 'Lora', sans-serif;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 50px;
+              color: $blue-text-color;
+            }
+          }
+
+          .about-description__item-text {
+            font-size: 14px;
+            line-height: 18px;
+            color: $base-text-color;
+
+            span {
+              font-family: 'Montserrat', sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.popular {
+  padding-bottom: 120px;
+
+  .container {
+    .popular-title {
+      @include head-lora-38;
+      margin-bottom: 40px;
+    }
+
+    .popular-articles {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .popular-linkBlog {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 40px;
+      cursor: pointer;
+
+      .popular-linkBlog__text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-right: 14px;
+        color: $blue-text-color;
+      }
+
+      .popular-linkBlog__svg {
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+.reviews {
+  margin-bottom: 120px;
+
+  .container {
+    position: relative;
+
+    .reviews-title {
+      @include head-lora-38;
+      margin-bottom: 20px;
+    }
+
+    .reviews-carousel {
+      position: relative;
+
+      .reviews-item {
+        box-sizing: border-box;
+        max-width: 396px;
+        height: 267px;
+        padding: 30px;
+        border: 1px solid $blue-text-color;
+        border-radius: 5px;
+
+        .reviews-item__user {
+          display: flex;
+          align-items: center;
+
+          .reviews-item__image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 26px;
+          }
+
+          .reviews-item__name {
+            font-weight: 600;
+            font-size: 18px;
+            color: $blue-text-color;
+          }
+        }
+
+        .reviews-item__text {
+          font-size: 16px;
+          line-height: 22px;
+          color: $base-text-color;
+          margin-top: 15px;
+        }
+      }
+    }
+
+    .carousel-nav {
+      width: calc(100% + 40px);
+      top: calc(50% + 14px);
+      left: -20px;
+      position: absolute;
+      z-index: 999;
+
+      .reviews-arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.contacts {
+  margin-bottom: 120px;
+  .container {
+    .contacts-items {
+      display: flex;
+
+      .contact-map {
+        margin-right: 26px;
+      }
+
+      .contact-contacts {
+        max-width: 501px;
+
+        .contact-contacts__title {
+          font-family: 'Lora', sans-serif;
+          font-size: 38px;
+          font-weight: 400;
+          color: $blue-text-color;
+          margin-bottom: 20px;
+        }
+
+        .contact-contacts__item {
+          .contacts-item__title {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 26px;
+            color: $blue-text-color;
+            margin-bottom: 10px;
+          }
+
+          .contacts-item__text {
+            font-size: 14px;
+            line-height: 18px;
+            color: $base-text-color;
+            margin-bottom: 20px;
+          }
+
+          .contacts-item__socials {
+            display: flex;
+            align-items: center;
+
+            .contacts-item__social {
+              margin-right: 20px;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

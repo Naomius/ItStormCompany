@@ -1,10 +1,78 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {OwlOptions} from "ngx-owl-carousel-o";
+import {ArticleType} from "../../../types/article-type";
+import {ArticleService} from "../../shared/services/article.service";
+import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment.development";
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    margin: 26,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      }
+    },
+  }
+
+  reviewsOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    margin: 25,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      }
+    },
+  }
+
+  popularArticles: ArticleType[] = [];
+  serverStaticPath = environment.serverStaticPath;
+
+  constructor(private articleService: ArticleService,
+              private router: Router) {
+  }
+
+  openPopup(value: string): void {
+
+  }
+
+  ngOnInit(): void {
+    this.articleService.getPopularArticles()
+      .subscribe((data: ArticleType[]) => {
+        this.popularArticles = data as ArticleType[];
+      })
+  }
 
 }
