@@ -35,7 +35,7 @@ header.header {
               text-decoration: none;
 
               &.active {
-                border-bottom-color: $base-text-color;
+                color: $blue-text-color;
               }
             }
 
