@@ -27,7 +27,7 @@
               Весь декабрь у нас действует акция на работу копирайтера.
             </div>
             <div class="carousel-item__action">
-              <button class="button" (click)="openPopup('Копирайтер')">Подробнее</button>
+              <button class="button" (click)="openPopup('Копирайтинг')">Подробнее</button>
             </div>
           </div>
         </ng-template>
@@ -84,7 +84,7 @@
             От 7 500₽
           </div>
           <div class="services-item__action-button">
-            <button class="button">Подробнее</button>
+            <button class="button" (click)="openPopup('Создание сайтов')">Подробнее</button>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@
             От 3 500₽
           </div>
           <div class="services-item__action-button">
-            <button class="button">Подробнее</button>
+            <button class="button" (click)="openPopup('Продвижение')">Подробнее</button>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
             От 1 000₽
           </div>
           <div class="services-item__action-button">
-            <button class="button">Подробнее</button>
+            <button class="button" (click)="openPopup('Реклама')">Подробнее</button>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
             От 750₽
           </div>
           <div class="services-item__action-button">
-            <button class="button">Подробнее</button>
+            <button class="button" (click)="openPopup('Копирайтинг')">Подробнее</button>
           </div>
         </div>
       </div>
@@ -386,3 +386,6 @@
     </div>
   </div>
 </section>
+
+<app-popup-order #popup></app-popup-order>
+

@@ -1,4 +1,6 @@
 @import "variables";
+@import "mixins";
+
 
 html, body {
   margin: 0;
@@ -50,4 +52,105 @@ html, body {
     text-decoration: none;
     color: $base-text-color;
   }
+}
+
+.popup {
+  box-sizing: border-box;
+  padding: 94px 153px 86px 153px;
+  position: relative;
+  background-size: cover;
+  //width: 727px;
+  //height: 489px;
+  border-radius: 4px;
+  border: 2px solid $blue-text-color;
+
+  .popup-close {
+    position: absolute;
+    cursor: pointer;
+    top: 30px;
+    right: 30px;
+  }
+
+  .popup-title {
+    @include head-lora-38;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .popup-cons__title {
+    max-width: 422px;
+  }
+
+  .popup-inputs {
+    max-width: 422px;
+    .popup-input {
+      .input {
+        margin-bottom: 5px;
+        width: 422px;
+        color: $blue-text-color;
+      }
+
+      .invalid-feedback {
+        color: red;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+    }
+
+    .popup-action {
+      margin-top: 15px;
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+
+}
+
+.successPopup {
+  box-sizing: border-box;
+  padding: 94px 153px 86px 153px;
+  position: relative;
+  background-size: cover;
+  border-radius: 4px;
+  border: 2px solid $blue-text-color;
+
+  .successPopup-close {
+    position: absolute;
+    cursor: pointer;
+    top: 30px;
+    right: 30px;
+  }
+
+  .successPopup-title {
+    @include head-lora-38;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .successPopup-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #1E1A2B;
+    margin-bottom: 40px;
+  }
+    .successPopup-action {
+      text-align: center;
+
+      .popup-action-textError {
+        margin-top: 5px;
+        color: red;
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+      }
+    }
+
+
+
 }

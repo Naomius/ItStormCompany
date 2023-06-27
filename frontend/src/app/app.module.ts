@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 @NgModule({
   declarations: [
@@ -29,10 +31,11 @@ import {CommonModule} from "@angular/common";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatDialogModule,
+    MatMenuModule,
     CarouselModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatMenuModule,
     SharedModule,
     BrowserAnimationsModule
   ],

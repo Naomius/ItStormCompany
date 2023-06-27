@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleType} from "../../../types/article-type";
 import {ArticleService} from "../../shared/services/article.service";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
+import {PopupOrderComponent} from "../../shared/components/popup-order/popup-order.component";
 
 
 @Component({
@@ -11,7 +12,10 @@ import {environment} from "../../../environments/environment.development";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit, AfterViewInit{
+
+  @ViewChild(PopupOrderComponent)
+  private popupOrderComponent!: PopupOrderComponent;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -61,11 +65,11 @@ export class MainComponent implements OnInit{
   serverStaticPath = environment.serverStaticPath;
 
   constructor(private articleService: ArticleService,
-              private router: Router) {
+              private router: Router,) {
   }
 
   openPopup(value: string): void {
-
+    this.popupOrderComponent.openPopup(value)
   }
 
   ngOnInit(): void {
@@ -73,6 +77,10 @@ export class MainComponent implements OnInit{
       .subscribe((data: ArticleType[]) => {
         this.popularArticles = data as ArticleType[];
       })
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
 }
