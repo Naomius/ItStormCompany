@@ -5,6 +5,7 @@ import {ArticleComponent} from "./components/article/article.component";
 import { PopupOrderComponent } from './components/popup-order/popup-order.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { PopupConsultationComponent } from './components/popup-consultation/popup-consultation.component';
+import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 
 
 
@@ -13,6 +14,7 @@ import { PopupConsultationComponent } from './components/popup-consultation/popu
     ArticleComponent,
     PopupOrderComponent,
     PopupConsultationComponent,
+    CategoryFilterComponent,
   ],
   imports: [
     CommonModule,

@@ -37,7 +37,7 @@ export class PopupOrderComponent implements OnDestroy{
   popupForm = this.fb.group({
     service: ['', [Validators.required]],
     name: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.pattern('^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,7}$')]],
   })
 
   creatOrder(): void {

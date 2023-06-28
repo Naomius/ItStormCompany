@@ -20,6 +20,14 @@
         <input type="text" class="input" placeholder="Ваш номер телефона" formControlName="phone"
                [ngStyle]="{'border-color': popupFormConsultation.get('phone')?.invalid
                && (popupFormConsultation.get('phone')?.dirty || popupFormConsultation.get('phone')?.touched) ? 'red' : ''}">
+        <div *ngIf="popupFormConsultation.get('phone')?.invalid && (popupFormConsultation.get('phone')?.touched || popupFormConsultation.get('phone')?.dirty)">
+          <div class="invalid-feedback" *ngIf="popupFormConsultation.get('phone')?.errors?.['required']">
+            Необходимо ввести номер телефона
+          </div>
+          <div class="invalid-feedback" *ngIf="popupFormConsultation.get('phone')?.errors?.['pattern']">
+            Номер телефона должен состоять из цифр и не менее 10 символов
+          </div>
+        </div>
       </div>
       <div class="popup-action">
         <button class="button" [disabled]="popupFormConsultation.invalid" (click)="creatOrder()">Заказать консультацию</button>

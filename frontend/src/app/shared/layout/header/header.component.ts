@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit{
               private _snackBar: MatSnackBar,
               private router: Router,
               private userService: UserService) {
+
     this.isLogged = this.authService.getIsLoggedIn();
     this.getUserName();
   }
@@ -27,8 +28,8 @@ export class HeaderComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
-      this.isLogged = isLoggedIn;
+    this.authService.isLogged$.subscribe((isLogged: boolean) => {
+      this.isLogged = isLogged;
       this.getUserName();
     })
   }

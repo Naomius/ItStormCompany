@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map, Observable, tap} from "rxjs";
 import {UserInfoType} from "../../../types/user-info.type";
 import {DefaultResponseType} from "../../../types/default-response.type";
 import {environment} from "../../../environments/environment.development";
@@ -15,7 +15,11 @@ export class UserService {
               private authService: AuthService) { }
 
   getUserInfo(): Observable<UserInfoType | DefaultResponseType> {
-    return this.http.get<UserInfoType | DefaultResponseType>(environment.api + 'users');
+    return this.http.get<UserInfoType | DefaultResponseType>(environment.api + 'users', {
+      headers: new HttpHeaders({
+        accessToken: 'auth-token'
+      })
+    });
   }
 
 }

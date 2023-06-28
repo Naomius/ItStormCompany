@@ -33,7 +33,7 @@ export class PopupConsultationComponent {
 
   popupFormConsultation = this.fb.group({
     name: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.pattern('^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,7}$')]],
   })
 
   creatOrder(): void {

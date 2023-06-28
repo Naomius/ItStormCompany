@@ -5,6 +5,7 @@ import {ArticleService} from "../../shared/services/article.service";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
 import {PopupOrderComponent} from "../../shared/components/popup-order/popup-order.component";
+import {AuthService} from "../../core/auth/auth.service";
 
 
 @Component({
@@ -63,9 +64,12 @@ export class MainComponent implements OnInit, AfterViewInit{
 
   popularArticles: ArticleType[] = [];
   serverStaticPath = environment.serverStaticPath;
+  isLogged: boolean = false;
 
   constructor(private articleService: ArticleService,
-              private router: Router,) {
+              private router: Router,
+              private authService: AuthService) {
+    this.isLogged = this.authService.getIsLoggedIn();
   }
 
   openPopup(value: string): void {

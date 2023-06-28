@@ -47,6 +47,7 @@
         box-sizing: border-box;
         position: relative;
         font-size: 16px;
+        cursor: pointer;
 
         .blog-sorting__head {
           display: flex;
@@ -90,6 +91,7 @@
 
         &.open {
           width: 257px;
+
           .blog-sorting__head {
             background-color: #B9D5FD;
             border-radius: 5px 5px 0 0;
