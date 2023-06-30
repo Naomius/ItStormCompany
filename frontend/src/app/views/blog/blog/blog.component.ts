@@ -56,16 +56,15 @@ export class BlogComponent implements OnInit {
                 foundCategory.activeFilter = true;
               }
             })
+            this.articleService.getArticles(this.activeParams)
+              .subscribe(data => {
+                this.pages = [];
+                for (let i = 1; i <= data.pages; i++) {
+                  this.pages.push(i);
+                }
+                this.articles = data.items;
+              })
           });
-
-        this.articleService.getArticles(this.activeParams)
-          .subscribe(data => {
-            this.pages = [];
-            for (let i = 1; i <= data.pages; i++) {
-              this.pages.push(i);
-            }
-            this.articles = data.items;
-          })
       })
       }
 
@@ -117,5 +116,32 @@ export class BlogComponent implements OnInit {
   toggleSorting(): void {
     this.sortingOpen = !this.sortingOpen
   }
+
+  openPage(page: number) {
+    this.activeParams.page = page;
+    this.router.navigate(['/blog'], {
+      queryParams: this.activeParams
+    })
+  }
+
+  openPrevPage() {
+    if (this.activeParams.page && this.activeParams.page > 1) {
+      this.activeParams.page--;
+      this.router.navigate(['/blog'], {
+        queryParams: this.activeParams
+      })
+    }
+  }
+
+  openNextPage() {
+    if (this.activeParams.page && this.activeParams.page < this.pages.length) {
+      this.activeParams.page++;
+      this.router.navigate(['/blog'], {
+        queryParams: this.activeParams
+      })
+    }
+  }
+
+
 
 }
