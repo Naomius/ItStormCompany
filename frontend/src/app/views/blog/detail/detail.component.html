@@ -57,7 +57,7 @@
       <div class="main-content__loggedUser" *ngIf="!isLogged">
         Чтобы оставлять комментарии, <a routerLink="/login">войдите</a> или <a routerLink="/signup">зарегистрируйтесь</a>.
       </div>
-      <app-comments-card></app-comments-card>
+      <app-comments-card *ngFor="let comment of comments" [comment]="comment"></app-comments-card>
     </div>
     <aside class="aside">
       <div class="aside-title">

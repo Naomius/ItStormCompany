@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {DetailCommentType} from "../../../../types/detail-article.type";
+import {AuthService} from "../../../core/auth/auth.service";
 
 @Component({
   selector: 'app-comments-card',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class CommentsCardComponent {
 
+  @Input() comment!: DetailCommentType;
+  isLogged: boolean = false;
+
+  constructor(private authService: AuthService) {
+    this.isLogged = this.authService.getIsLoggedIn();
+  }
 }
