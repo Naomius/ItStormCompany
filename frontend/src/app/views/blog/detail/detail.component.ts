@@ -45,7 +45,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       )
       .subscribe((data: ArticleType[]) => {
         this.articles = data;
-        this.getComments()
+        this.getMoreComments()
       })
 
   }
@@ -61,7 +61,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       })
   }
 
-  getComments() {
+  getMoreComments() {
     const params = {
       offset: this.comments.length,
       article: this.articleDetail.id

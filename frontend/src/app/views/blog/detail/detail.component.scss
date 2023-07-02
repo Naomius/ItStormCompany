@@ -133,6 +133,19 @@
           }
 
         }
+
+        .detail-main__moreComments {
+          margin-bottom: 120px;
+          a {
+            font-size: 20px;
+            font-weight: 500;
+            color: $blue-text-color;
+            cursor: pointer;
+          }
+        }
+        .detail-main__noComments {
+
+        }
       }
 
       .aside {
