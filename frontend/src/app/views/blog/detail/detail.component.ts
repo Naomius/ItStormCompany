@@ -37,6 +37,20 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.authService.isLogged$.subscribe((isLogged: boolean) => {
       this.isLogged = isLogged;
     })
+    this.getArticleDetail();
+    this.activatedRoute.params
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap((params: Params) => this.articleService.getRelatedArticle(params['url']))
+      )
+      .subscribe((data: ArticleType[]) => {
+        this.articles = data;
+        this.getComments()
+      })
+
+  }
+
+  getArticleDetail() {
     this.activatedRoute.params
       .pipe(
         takeUntil(this.destroy$),
@@ -45,20 +59,9 @@ export class DetailComponent implements OnInit, OnDestroy {
       .subscribe((data: DetailArticleType) => {
         this.articleDetail = data;
       })
-
-    this.activatedRoute.params
-      .pipe(
-        takeUntil(this.destroy$),
-        switchMap((params: Params) => this.articleService.getRelatedArticle(params['url']))
-      )
-      .subscribe((data: ArticleType[]) => {
-        this.articles = data;
-        this.addedComments()
-      })
-
   }
 
-  addedComments() {
+  getComments() {
     const params = {
       offset: this.comments.length,
       article: this.articleDetail.id
@@ -69,7 +72,11 @@ export class DetailComponent implements OnInit, OnDestroy {
       )
       .subscribe(data => {
         console.log(data.comments)
-        this.comments = data.comments
+        data.comments.forEach(item => {
+          if (this.comments.length < data.allCount) {
+            this.comments.push(item)
+          }
+        })
       })
   }
 

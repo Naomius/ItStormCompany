@@ -8,6 +8,8 @@ import { PopupConsultationComponent } from './components/popup-consultation/popu
 import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { UserAgreementComponent } from './components/user-agreement/user-agreement.component';
+import { CommentsCardComponent } from './components/comments-card/comments-card.component';
 
 
 
@@ -18,6 +20,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     PopupConsultationComponent,
     CategoryFilterComponent,
     LoaderComponent,
+    UserAgreementComponent,
+    CommentsCardComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ArticleComponent,
     PopupOrderComponent,
     PopupConsultationComponent,
-    LoaderComponent
+    LoaderComponent,
+    CommentsCardComponent
   ]
 })
 export class SharedModule { }
