@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleType} from "../../../types/article-type";
 import {ArticleService} from "../../shared/services/article.service";
@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
 import {PopupOrderComponent} from "../../shared/components/popup-order/popup-order.component";
 import {AuthService} from "../../core/auth/auth.service";
-import {Subject, Subscription, takeUntil} from "rxjs";
+import {Subscription} from "rxjs";
 
 
 @Component({

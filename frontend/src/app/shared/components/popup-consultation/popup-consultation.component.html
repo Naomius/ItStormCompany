@@ -15,7 +15,11 @@
         <input type="text" class="input" placeholder="Ваше имя" formControlName="name"
                [ngStyle]="{'border-color': popupFormConsultation.get('name')?.invalid
         && (popupFormConsultation.get('name')?.dirty || popupFormConsultation.get('name')?.touched) ? 'red' : ''}">
-
+        <div *ngIf="popupFormConsultation.get('name')?.invalid && (popupFormConsultation.get('name')?.touched || popupFormConsultation.get('name')?.dirty)">
+          <div class="invalid-feedback" *ngIf="popupFormConsultation.get('name')?.errors?.['required']">
+            Необходимо ввести ваше имя
+          </div>
+        </div>
 
         <input type="text" class="input" placeholder="Ваш номер телефона" formControlName="phone"
                [ngStyle]="{'border-color': popupFormConsultation.get('phone')?.invalid

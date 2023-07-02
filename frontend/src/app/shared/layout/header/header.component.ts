@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(): void {
+
     this.authService.isLogged$
       .pipe(takeUntil(this.destroy$))
       .subscribe((isLogged: boolean) => {

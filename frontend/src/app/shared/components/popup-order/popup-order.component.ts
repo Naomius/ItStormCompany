@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy, TemplateRef, ViewChild} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../services/user.service";
@@ -40,6 +40,7 @@ export class PopupOrderComponent implements OnDestroy{
     phone: ['', [Validators.required, Validators.pattern('^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,7}$')]],
   })
 
+
   creatOrder(): void {
     this.popupForm.markAllAsTouched();
     if (this.popupForm.valid && this.popupForm.value.name && this.popupForm.value.phone && this.popupForm.value.service) {
@@ -63,12 +64,12 @@ export class PopupOrderComponent implements OnDestroy{
     this.popupForm.patchValue({
       service: value
     });
-    this.subscription = this.userService.getUserInfo()
-      .subscribe((data: UserInfoType | DefaultResponseType) => {
-        this.popupForm.patchValue({
-          name: (data as UserInfoType).name
-        });
-      })
+    // this.subscription = this.userService.getUserInfo()
+    //   .subscribe((data: UserInfoType | DefaultResponseType) => {
+    //     this.popupForm.patchValue({
+    //       name: (data as UserInfoType).name
+    //     });
+    //   })
     this.dialogRef = this.dialog.open(this.popup);
     this.dialogRef.backdropClick();
   }

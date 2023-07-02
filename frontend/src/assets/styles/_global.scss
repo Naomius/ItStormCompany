@@ -168,3 +168,10 @@ html, body {
     color: $base-text-color;
   }
 }
+
+.invalid-feedback {
+  max-width: 422px;
+  color: red;
+  text-align: center;
+  margin-bottom: 5px;
+}
