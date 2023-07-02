@@ -44,8 +44,10 @@ header.header {
       }
 
       .header-content__phone {
+        text-decoration: none;
         color: $blue-text-color;
-        margin-right: 120px;
+        margin-right: 60px;
+
       }
       .header-content__auth {
         a {

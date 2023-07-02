@@ -1,20 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../../core/auth/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {UserInfoType} from "../../../../types/user-info.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy{
 
   isLogged: boolean = false;
   userName: string = '';
+  destroy$ = new Subject();
 
   constructor(private authService: AuthService,
               private _snackBar: MatSnackBar,
@@ -28,7 +30,9 @@ export class HeaderComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.authService.isLogged$.subscribe((isLogged: boolean) => {
+    this.authService.isLogged$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isLogged: boolean) => {
       this.isLogged = isLogged;
       this.getUserName();
     })
@@ -37,6 +41,7 @@ export class HeaderComponent implements OnInit{
   getUserName(): void {
     if (this.isLogged) {
       this.userService.getUserInfo()
+        .pipe(takeUntil(this.destroy$))
         .subscribe((data: UserInfoType | DefaultResponseType) => {
           this.userName = (data as UserInfoType).name
         })
@@ -44,7 +49,9 @@ export class HeaderComponent implements OnInit{
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
+    this.authService.logout()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
       next: () => {
         this.doLogout();
       },
@@ -60,6 +67,11 @@ export class HeaderComponent implements OnInit{
     this.authService.userId = null;
     this._snackBar.open('Вы вышли из системы');
     this.router.navigate(['/']);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 }

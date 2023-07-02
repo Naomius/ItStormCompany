@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleType} from "../../../types/article-type";
 import {ArticleService} from "../../shared/services/article.service";
@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
 import {PopupOrderComponent} from "../../shared/components/popup-order/popup-order.component";
 import {AuthService} from "../../core/auth/auth.service";
+import {Subject, Subscription, takeUntil} from "rxjs";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {AuthService} from "../../core/auth/auth.service";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, AfterViewInit{
+export class MainComponent implements OnInit, OnDestroy{
 
   @ViewChild(PopupOrderComponent)
   private popupOrderComponent!: PopupOrderComponent;
@@ -65,6 +66,8 @@ export class MainComponent implements OnInit, AfterViewInit{
   popularArticles: ArticleType[] = [];
   serverStaticPath = environment.serverStaticPath;
   isLogged: boolean = false;
+  subscription!: Subscription;
+
 
   constructor(private articleService: ArticleService,
               private router: Router,
@@ -77,14 +80,15 @@ export class MainComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.articleService.getPopularArticles()
+    this.subscription = this.articleService.getPopularArticles()
       .subscribe((data: ArticleType[]) => {
         this.popularArticles = data as ArticleType[];
       })
   }
 
-  ngAfterViewInit(): void {
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
+
 
 }

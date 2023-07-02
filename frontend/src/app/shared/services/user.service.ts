@@ -14,11 +14,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserInfo(): Observable<UserInfoType | DefaultResponseType> {
-    return this.http.get<UserInfoType | DefaultResponseType>(environment.api + 'users', {
-      headers: new HttpHeaders({
-        accessToken: 'auth-token'
-      })
-    });
+    return this.http.get<UserInfoType | DefaultResponseType>(environment.api + 'users');
   }
 
 }

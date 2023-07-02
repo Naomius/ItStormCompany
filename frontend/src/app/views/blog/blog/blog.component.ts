@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ArticleService} from "../../../shared/services/article.service";
 import {ArticleType} from "../../../../types/article-type";
 import {ActiveParamsType} from "../../../../types/active-params.type";
@@ -7,14 +7,14 @@ import {CategoriesType} from "../../../../types/categories-type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AppliedFilterType} from "../../../../types/applied-filter.type";
 import {ActiveParamsUtil} from "../../../shared/utils/active-params.util";
-import {debounceTime} from "rxjs";
+import {debounceTime, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
 
   articles: ArticleType[] = [];
   activeParams: ActiveParamsType = {categories: []};
@@ -22,6 +22,7 @@ export class BlogComponent implements OnInit {
   pages: number[] = []
   appliedFilters: AppliedFilterType[] = [];
   sortingOpen: boolean = false;
+  destroy$ = new Subject();
 
   constructor(private articleService: ArticleService,
               private categoriesService: CategoriesService,
@@ -35,11 +36,15 @@ export class BlogComponent implements OnInit {
 
   processCatalog() {
     this.categoriesService.getCategories()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
       .subscribe(data => {
         this.categories = data;
 
         this.activatedRoute.queryParams
           .pipe(
+            takeUntil(this.destroy$),
             debounceTime(500)
           )
           .subscribe(params => {
@@ -57,6 +62,9 @@ export class BlogComponent implements OnInit {
               }
             })
             this.articleService.getArticles(this.activeParams)
+              .pipe(
+                takeUntil(this.destroy$)
+              )
               .subscribe(data => {
                 this.pages = [];
                 for (let i = 1; i <= data.pages; i++) {
@@ -96,9 +104,6 @@ export class BlogComponent implements OnInit {
     })
 
   }
-
-
-
 
   removeAppliedFilter(appliedFilter: AppliedFilterType) {
     this.activeParams.categories = this.activeParams.categories.filter(item => item !== appliedFilter.urlParam)
@@ -140,6 +145,11 @@ export class BlogComponent implements OnInit {
         queryParams: this.activeParams
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 

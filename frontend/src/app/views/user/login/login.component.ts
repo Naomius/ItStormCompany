@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/auth/auth.service";
 import {LoginResponseType} from "../../../../types/login-response.type";
@@ -6,13 +6,16 @@ import {DefaultResponseType} from "../../../../types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
+
+  private subscription?: Subscription;
 
   loginForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
@@ -28,7 +31,7 @@ export class LoginComponent {
 
   login(): void {
     if (this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password) {
-      this.authService.login(this.loginForm.value.email, this.loginForm.value.password, !!this.loginForm.value.rememberMe)
+       this.subscription = this.authService.login(this.loginForm.value.email, this.loginForm.value.password, !!this.loginForm.value.rememberMe)
         .subscribe( {
           next: (data: LoginResponseType | DefaultResponseType) => {
             let error = null;
@@ -60,5 +63,9 @@ export class LoginComponent {
           }
         })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

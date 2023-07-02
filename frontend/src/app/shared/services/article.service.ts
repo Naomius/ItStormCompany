@@ -4,6 +4,7 @@ import {ActiveParamsType} from "../../../types/active-params.type";
 import {Observable} from "rxjs";
 import {ArticleType} from "../../../types/article-type";
 import {environment} from "../../../environments/environment.development";
+import {DetailArticleType} from "../../../types/detail-article.type";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,14 @@ export class ArticleService {
 
   getPopularArticles(): Observable<ArticleType[]> {
     return this.http.get<ArticleType[]>(environment.api + 'articles/top');
+  }
+
+  getArticleDetail(url:string): Observable<DetailArticleType> {
+    return this.http.get<DetailArticleType>(environment.api + 'articles/' + url)
+  }
+
+  getRelatedArticle(url:string): Observable<ArticleType[]> {
+    return this.http.get<ArticleType[]>(environment.api + 'articles/related/' + url)
   }
 
 }
