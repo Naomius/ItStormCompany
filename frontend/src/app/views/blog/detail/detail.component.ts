@@ -37,6 +37,9 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.authService.isLogged$.subscribe((isLogged: boolean) => {
       this.isLogged = isLogged;
     })
+    setTimeout(() => {
+      this.getMoreComments()
+    }, 100);
     this.getArticleDetail();
     this.activatedRoute.params
       .pipe(
@@ -45,7 +48,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       )
       .subscribe((data: ArticleType[]) => {
         this.articles = data;
-        this.getMoreComments()
+
       })
 
   }
