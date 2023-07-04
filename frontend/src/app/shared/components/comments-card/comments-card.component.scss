@@ -62,6 +62,10 @@
         font-size: 14px;
         font-weight: 600;
         color: $base-text-color;
+
+        &.active {
+          color: $blue-text-color;
+        }
       }
 
       .footer-like__svg {
@@ -80,6 +84,10 @@
         font-size: 14px;
         font-weight: 600;
         color: $base-text-color;
+
+        &.active {
+          color: $blue-text-color;
+        }
       }
 
       .footer-dislike__svg {
@@ -92,6 +100,7 @@
 
     .comments-footer__attention {
       padding-top: 3px;
+      cursor: pointer;
     }
   }
 }

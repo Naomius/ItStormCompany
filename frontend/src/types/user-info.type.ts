@@ -7,3 +7,7 @@ export type UserCommentActionType = {
   comment: string,
   action: string
 }
+
+export type UserActionId = {
+  articleId: string
+}

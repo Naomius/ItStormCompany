@@ -1,6 +1,6 @@
 export type DetailArticleType = {
   "text": string,
-  "comments": [],
+  "comments": DetailCommentType[],
   "commentsCount": number,
   "id": string,
   "title": string,

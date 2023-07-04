@@ -8,6 +8,7 @@ import {AuthService} from "../../../core/auth/auth.service";
 import {CommentsService} from "../../../shared/services/comments.service";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserCommentActionType} from "../../../../types/user-info.type";
 
 @Component({
   selector: 'app-detail',
@@ -29,11 +30,12 @@ export class DetailComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private commentsService: CommentsService,
               private _snackBar: MatSnackBar) {
-    this.isLogged = this.authService.getIsLoggedIn();
   }
 
 
   ngOnInit(): void {
+    this.isLogged = this.authService.getIsLoggedIn();
+
     this.authService.isLogged$.subscribe((isLogged: boolean) => {
       this.isLogged = isLogged;
     })
@@ -61,26 +63,46 @@ export class DetailComponent implements OnInit, OnDestroy {
       )
       .subscribe((data: DetailArticleType) => {
         this.articleDetail = data;
+        this.comments = data.comments;
+        if (this.isLogged) {
+          this.commentsService.getArticleCommentActions({articleId: this.articleDetail.id})
+            .subscribe((data: UserCommentActionType[] | DefaultResponseType) => {
+              if ((data as DefaultResponseType).error !== undefined) {
+                throw new Error((data as DefaultResponseType).message)
+              }
+
+              this.comments.map(item => {
+                (data as UserCommentActionType[]).forEach(action => {
+                  if (action.comment === item.id) {
+                    item.action = action.action
+                  }
+                })
+                return item;
+              })
+
+            })
+        }
       })
   }
 
   getMoreComments() {
-    const params = {
-      offset: this.comments.length,
-      article: this.articleDetail.id
-    }
-    this.commentsService.getComments(params)
-      .pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe(data => {
-        console.log(data.comments)
-        data.comments.forEach(item => {
-          if (this.comments.length < data.allCount) {
-            this.comments.push(item)
-          }
+      const params = {
+        offset: this.comments.length,
+        article: this.articleDetail.id
+      }
+
+      this.commentsService.getComments(params)
+        .pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe(data => {
+          console.log(data.comments)
+          data.comments.forEach(item => {
+            if (this.comments.length < data.allCount) {
+              this.comments.push(item)
+            }
+          })
         })
-      })
   }
 
   addNewComment() {
@@ -92,10 +114,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         .subscribe((data: DefaultResponseType) => {
           if (data.error) {
             const error = data.message;
-              this._snackBar.open(error)
+            this._snackBar.open(error)
           }
           this.textareaValue = '';
           this._snackBar.open('Вы успешно оставили свой комментарий')
+          this.getArticleDetail()
         })
     }
   }

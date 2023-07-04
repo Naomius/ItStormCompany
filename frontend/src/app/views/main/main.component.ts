@@ -72,7 +72,6 @@ export class MainComponent implements OnInit, OnDestroy{
   constructor(private articleService: ArticleService,
               private router: Router,
               private authService: AuthService) {
-    this.isLogged = this.authService.getIsLoggedIn();
   }
 
   openPopup(value: string): void {
@@ -80,6 +79,8 @@ export class MainComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    this.isLogged = this.authService.getIsLoggedIn();
+
     this.subscription = this.articleService.getPopularArticles()
       .subscribe((data: ArticleType[]) => {
         this.popularArticles = data as ArticleType[];

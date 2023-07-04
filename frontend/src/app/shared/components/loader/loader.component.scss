@@ -1,4 +1,4 @@
-.overplay {
+.overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -9,4 +9,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: anim linear 5s infinite;
+}
+
+@keyframes anim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
