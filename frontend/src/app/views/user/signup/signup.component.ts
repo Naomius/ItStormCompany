@@ -6,6 +6,7 @@ import {AuthService} from "../../../core/auth/auth.service";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {LoginResponseType} from "../../../../types/login-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
+import {faEye, faEyeSlash, IconDefinition} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,11 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+
+  visible: boolean = true;
+  changeType: boolean = true;
+  faEye: IconDefinition = faEye;
+  faEyeSlash: IconDefinition = faEyeSlash;
 
 
   signupForm = this.fb.group({
@@ -63,6 +69,11 @@ export class SignupComponent {
           }
         })
     }
+  }
+
+  viewPass(): void {
+    this.visible = !this.visible;
+    this.changeType = !this.changeType;
   }
 
 }

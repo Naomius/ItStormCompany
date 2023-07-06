@@ -175,3 +175,14 @@ html, body {
   text-align: center;
   margin-bottom: 5px;
 }
+
+.input-pass {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  cursor: pointer;
+}

@@ -10,6 +10,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { UserAgreementComponent } from './components/user-agreement/user-agreement.component';
 import { CommentsCardComponent } from './components/comments-card/comments-card.component';
+import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
 
 
 
@@ -27,14 +28,17 @@ import { CommentsCardComponent } from './components/comments-card/comments-card.
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
+  providers: [provideNgxMask()],
   exports: [
     ArticleComponent,
     PopupOrderComponent,
     PopupConsultationComponent,
     LoaderComponent,
-    CommentsCardComponent
+    CommentsCardComponent,
   ]
 })
 export class SharedModule { }

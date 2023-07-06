@@ -5,6 +5,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         ReactiveFormsModule,
         FormsModule,
         UserRoutingModule,
+        FontAwesomeModule,
     ]
 })
 export class UserModule { }

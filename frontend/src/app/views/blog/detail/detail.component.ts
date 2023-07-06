@@ -40,7 +40,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.isLogged = isLogged;
     })
     setTimeout(() => {
-      this.getMoreComments()
+      this.getArticleDetail()
     }, 100);
     this.getArticleDetail();
     this.activatedRoute.params

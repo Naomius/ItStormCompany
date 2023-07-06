@@ -30,7 +30,7 @@
         </div>
 
 
-        <input type="text" class="input" placeholder="Ваш номер телефона" formControlName="phone"
+        <input type="text" class="input" [mask]="'+0(000)-000-00-00'"  placeholder="Ваш номер телефона" formControlName="phone"
                [ngStyle]="{'border-color': popupForm.get('phone')?.invalid
                && (popupForm.get('phone')?.dirty || popupForm.get('phone')?.touched) ? 'red' : ''}">
         <div *ngIf="popupForm.get('phone')?.invalid && (popupForm.get('phone')?.touched || popupForm.get('phone')?.dirty)">

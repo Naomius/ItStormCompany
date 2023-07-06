@@ -32,11 +32,12 @@
           </div>
         </div>
 
-        <div class="auth-input">
-          <input type="password" class="input"
+        <div class="auth-input input-pass">
+          <input [type]="changeType ? 'password' : 'text'" class="input"
                  [ngStyle]="{'border-color': signupForm.get('password')?.invalid
                  && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched) ? 'red' : ''}"
                  placeholder="Пароль" formControlName="password">
+          <span class="eyeIcon" (click)="viewPass()"><fa-icon class="eyeIcon" [icon]="visible ? faEye : faEyeSlash"></fa-icon></span>
         </div>
         <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
           <div class="invalid-feedback" *ngIf="signupForm.get('password')?.errors?.['required']">

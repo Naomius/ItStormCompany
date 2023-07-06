@@ -73,6 +73,8 @@ export class CommentsCardComponent implements OnInit{
             }
           });
       }
+    } else {
+      this._snackbar.open('Необходимо авторизоваться')
     }
   }
 
@@ -99,6 +101,8 @@ export class CommentsCardComponent implements OnInit{
             }
           });
       }
+    } else {
+      this._snackbar.open('Необходимо авторизоваться')
     }
   }
 
@@ -120,6 +124,8 @@ export class CommentsCardComponent implements OnInit{
             }
           }
         })
+    } else {
+      this._snackbar.open('Необходимо авторизоваться')
     }
   }
 

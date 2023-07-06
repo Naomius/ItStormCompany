@@ -6,7 +6,6 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { MainComponent } from './views/main/main.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
@@ -16,6 +15,10 @@ import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
 import {MatDialogModule} from "@angular/material/dialog";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
+import {MatInputModule} from "@angular/material/input";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 
 @NgModule({
@@ -35,14 +38,18 @@ import {AuthInterceptor} from "./core/auth/auth.interceptor";
     MatDialogModule,
     MatMenuModule,
     CarouselModule,
+    MatInputModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
+
+
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

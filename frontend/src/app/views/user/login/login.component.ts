@@ -7,6 +7,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import { faEye, faEyeSlash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,11 @@ import {Subscription} from "rxjs";
 export class LoginComponent implements OnDestroy{
 
   private subscription?: Subscription;
+  visible: boolean = true;
+  changeType: boolean = true;
+  faEye: IconDefinition = faEye;
+  faEyeSlash: IconDefinition = faEyeSlash;
+
 
   loginForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
@@ -63,6 +70,11 @@ export class LoginComponent implements OnDestroy{
           }
         })
     }
+  }
+
+  viewPass(): void {
+    this.visible = !this.visible;
+    this.changeType = !this.changeType;
   }
 
   ngOnDestroy(): void {

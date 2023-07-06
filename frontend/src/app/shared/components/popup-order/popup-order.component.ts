@@ -1,10 +1,9 @@
 import {Component, ElementRef, OnDestroy, TemplateRef, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../services/user.service";
 import {Subscription} from "rxjs";
-import {UserInfoType} from "../../../../types/user-info.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {NewRequestsService} from "../../services/new-requests.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -13,7 +12,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-popup-order',
   templateUrl: './popup-order.component.html',
-  styleUrls: ['./popup-order.component.scss']
+  styleUrls: ['./popup-order.component.scss'],
+
 })
 export class PopupOrderComponent implements OnDestroy{
 
