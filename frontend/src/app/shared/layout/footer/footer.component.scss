@@ -37,6 +37,17 @@ footer.footer {
               cursor: pointer;
               text-decoration: none;
               color: $blue-text-color;
+
+              background: linear-gradient(to right, transparent, transparent),
+              linear-gradient(to right, #bcd1ff, #91B7FFFF);
+              background-size: 100% 1px, 0 1px;
+              background-position: 100% 100%, 0 100%;
+              background-repeat: no-repeat;
+              transition: background-size 400ms;
+
+              &:hover {
+                background-size: 0 1px, 100% 1px;
+              }
             }
 
           }

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleType} from "../../../types/article-type";
 import {ArticleService} from "../../shared/services/article.service";
@@ -9,6 +9,7 @@ import {AuthService} from "../../core/auth/auth.service";
 import {Subscription} from "rxjs";
 
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -16,8 +17,10 @@ import {Subscription} from "rxjs";
 })
 export class MainComponent implements OnInit, OnDestroy{
 
+
   @ViewChild(PopupOrderComponent)
   private popupOrderComponent!: PopupOrderComponent;
+  windowScrolled = false;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -85,11 +88,29 @@ export class MainComponent implements OnInit, OnDestroy{
       .subscribe((data: ArticleType[]) => {
         this.popularArticles = data as ArticleType[];
       })
+
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.pageYOffset !== 0;
+    });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  Navigate(elem: HTMLElement) {
+    elem.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrollToTop(elem: HTMLElement): void {
+    // scroll to the top of the body
+    elem.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start',
+    });
+  }
+
 
 
 }

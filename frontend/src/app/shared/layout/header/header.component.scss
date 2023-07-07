@@ -33,6 +33,16 @@ header.header {
               color: $base-text-color;
               cursor: pointer;
               text-decoration: none;
+              background: linear-gradient(to right, transparent, transparent),
+                        linear-gradient(to right, #bcd1ff, #91B7FFFF);
+              background-size: 100% 1px, 0 1px;
+              background-position: 100% 100%, 0 100%;
+              background-repeat: no-repeat;
+              transition: background-size 400ms;
+
+              &:hover {
+                background-size: 0 1px, 100% 1px;
+              }
 
               &.active {
                 color: $blue-text-color;
