@@ -11,6 +11,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { UserAgreementComponent } from './components/user-agreement/user-agreement.component';
 import { CommentsCardComponent } from './components/comments-card/comments-card.component';
 import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
+import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 
 
@@ -23,6 +24,7 @@ import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
     LoaderComponent,
     UserAgreementComponent,
     CommentsCardComponent,
+    AutoFocusDirective,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
     PopupConsultationComponent,
     LoaderComponent,
     CommentsCardComponent,
+    AutoFocusDirective,
   ]
 })
 export class SharedModule { }

@@ -222,7 +222,7 @@
       Популярные статьи из блога
     </div>
     <div class="popular-articles">
-      <app-article [article]="article" *ngFor="let article of popularArticles"></app-article>
+      <app-article [article]="article" *ngFor="let article of popularArticles | async"></app-article>
     </div>
     <a class="popular-linkBlog">
       <a routerLink="/blog" class="popular-linkBlog__text">

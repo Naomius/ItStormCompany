@@ -11,9 +11,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-popup-consultation',
   templateUrl: './popup-consultation.component.html',
-  styleUrls: ['./popup-consultation.component.scss']
+  styleUrls: ['./popup-consultation.component.scss'],
 })
 export class PopupConsultationComponent {
+
 
   @ViewChild('popupConsultation')
   popupConsultation!: TemplateRef<ElementRef>;
@@ -61,6 +62,7 @@ export class PopupConsultationComponent {
 
   closePopup(): void {
     this.dialogRef?.close();
+    this.fb
     this.popupFormConsultation.reset();
     this.router.navigate(['/']);
   }

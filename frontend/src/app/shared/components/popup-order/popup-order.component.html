@@ -1,5 +1,5 @@
 <ng-template #popup>
-  <div class="popup" [formGroup]="popupForm" *ngIf="!isSuccessOrder">
+  <div class="popup" [formGroup]="popupForm" *ngIf="!isSuccessOrder" (keydown.enter)="creatOrder()">
     <div class="popup-close" (click)="closePopup()">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
@@ -21,7 +21,7 @@
         </select>
       </div>
       <div class="popup-input">
-        <input type="text" class="input" placeholder="Ваше имя" formControlName="name"
+        <input type="text" class="input" autoFocus placeholder="Ваше имя" formControlName="name"
                [ngStyle]="{'border-color': popupForm.get('name')?.invalid
         && (popupForm.get('name')?.dirty || popupForm.get('name')?.touched) ? 'red' : ''}">
         <div class="invalid-feedback" *ngIf="popupForm.get('name')?.invalid && (popupForm.get('name')?.touched || popupForm.get('name')?.dirty)
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="popup-action">
-        <button class="button" [disabled]="popupForm.invalid" (click)="creatOrder()">Заказать консультацию</button>
+        <button class="button" [disabled]="popupForm.invalid" (click)="creatOrder()" (keydown.enter)="creatOrder()">Заказать консультацию</button>
         <div class="popup-action-textError" *ngIf="isErrorOrder">
           произошла ошибка при отправке формы, попробуйте еще раз.
         </div>

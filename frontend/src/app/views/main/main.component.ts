@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleType} from "../../../types/article-type";
 import {ArticleService} from "../../shared/services/article.service";
@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment.development";
 import {PopupOrderComponent} from "../../shared/components/popup-order/popup-order.component";
 import {AuthService} from "../../core/auth/auth.service";
-import {Subscription} from "rxjs";
+import {Observable} from "rxjs";
 
 
 
@@ -15,7 +15,7 @@ import {Subscription} from "rxjs";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy{
+export class MainComponent implements OnInit{
 
 
   @ViewChild(PopupOrderComponent)
@@ -66,10 +66,12 @@ export class MainComponent implements OnInit, OnDestroy{
     },
   }
 
-  popularArticles: ArticleType[] = [];
+  // popularArticles: ArticleType[] = [];
+  popularArticles!: Observable<ArticleType[]>;
   serverStaticPath = environment.serverStaticPath;
   isLogged: boolean = false;
-  subscription!: Subscription;
+  // subscription!: Subscription;
+
 
 
   constructor(private articleService: ArticleService,
@@ -84,26 +86,25 @@ export class MainComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.isLogged = this.authService.getIsLoggedIn();
 
-    this.subscription = this.articleService.getPopularArticles()
-      .subscribe((data: ArticleType[]) => {
-        this.popularArticles = data as ArticleType[];
-      })
+   this.popularArticles = this.articleService.getPopularArticles()
+      // .subscribe((data: ArticleType[]) => {
+      //   this.popularArticles = data as ArticleType[];
+      // })
 
     window.addEventListener('scroll', () => {
       this.windowScrolled = window.pageYOffset !== 0;
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.subscription.unsubscribe();
+  // }
 
   Navigate(elem: HTMLElement) {
     elem.scrollIntoView({ behavior: 'smooth' });
   }
 
   scrollToTop(elem: HTMLElement): void {
-    // scroll to the top of the body
     elem.scrollIntoView({
       behavior: 'smooth',
       block: 'start',

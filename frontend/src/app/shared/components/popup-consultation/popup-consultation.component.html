@@ -1,5 +1,5 @@
 <ng-template #popupConsultation>
-  <div class="popup" [formGroup]="popupFormConsultation" *ngIf="!isSuccessOrder">
+  <div class="popup" [formGroup]="popupFormConsultation" *ngIf="!isSuccessOrder" (keydown.enter)="creatOrder()">
     <div class="popup-close" (click)="closePopup()">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="popup-action">
-        <button class="button" [disabled]="popupFormConsultation.invalid" (click)="creatOrder()">Заказать консультацию</button>
+        <button class="button" [disabled]="popupFormConsultation.invalid" (click)="creatOrder()" (keydown.enter)="creatOrder()">Заказать консультацию</button>
         <div class="popup-action-textError" *ngIf="isErrorOrder">
           произошла ошибка при отправке формы, попробуйте еще раз.
         </div>
@@ -43,7 +43,7 @@
   </div>
 
   <div class="successPopup" *ngIf="isSuccessOrder">
-    <div class="successPopup-close" (click)="closePopup()">
+    <div class="successPopup-close" (click)="closePopup()" (keyup.enter)="closePopup()">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="1.93562" y1="2.64999" x2="13.9564" y2="14.6708" stroke="#BEBEBE" stroke-linecap="round"/>
         <line x1="13.9236" y1="2.62978" x2="1.90277" y2="14.6506" stroke="#BEBEBE" stroke-linecap="round"/>
@@ -56,7 +56,7 @@
       Мы свяжемся с вами при первой же возможности.
     </div>
     <div class="successPopup-action">
-      <button class="button close-btn" (click)="closePopup()">Окей</button>
+      <button class="button close-btn" (click)="closePopup()" (keyup.enter)="closePopup()">Окей</button>
     </div>
   </div>
 </ng-template>
