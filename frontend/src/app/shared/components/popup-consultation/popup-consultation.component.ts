@@ -55,9 +55,14 @@ export class PopupConsultationComponent {
     }
   }
 
-  openPopup(){
+  openPopup(): void{
     this.dialogRef = this.dialog.open(this.popupConsultation);
     this.dialogRef.backdropClick();
+  }
+
+  closePopupIcon(): void {
+    this.dialogRef?.close();
+    this.popupFormConsultation.reset();
   }
 
   closePopup(): void {
