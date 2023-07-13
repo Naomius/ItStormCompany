@@ -62,10 +62,13 @@ export class PopupConsultationComponent {
 
   closePopup(): void {
     this.dialogRef?.close();
-    this.fb
     this.popupFormConsultation.reset();
-    this.router.navigate(['/']);
+    setTimeout(() => {
+      this.isSuccessOrder = false;
+      this.dialogRef = this.dialog.open(this.popupConsultation);
+    }, 500)
   }
+
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
